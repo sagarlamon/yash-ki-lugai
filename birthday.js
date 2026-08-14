@@ -67,6 +67,7 @@ const barBot  = $('barBot');
 const uline   = $('uline').querySelector('.uline__path');
 const bloom   = $('bloom');
 const replay  = $('replay');
+const arrowSound = $('arrowSound');
 
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isRecord     = new URLSearchParams(location.search).has('record');
@@ -738,7 +739,13 @@ function buildFilm(m){
    .to([eyebrow, hint], { opacity: 0, duration: 0.2, ease: 'power1.out' }, 0);
 
   // --- the strike: the arrow embeds, the heart recoils, then holds pierced --
-  t.add(burstHearts, 0.26)
+  t.add(() => {
+    burstHearts();
+    if (arrowSound) {
+      arrowSound.currentTime = 0;
+      arrowSound.play().catch(() => {});
+    }
+  }, 0.26)
    // recoil along the arrow's line (up + right), springing back
    .to(target, { x: 7, y: -9, duration: 0.06, ease: 'power2.out' }, 0.26)
    .to(target, { x: 0, y: 0, duration: 0.32, ease: 'power2.out' }, 0.32)
@@ -826,6 +833,7 @@ function autoFire(){
 
 archery.addEventListener('pointerdown', (e) => {
   if (played) return;
+  if (arrowSound) arrowSound.load();
   drawing = true;
   try { archery.setPointerCapture(e.pointerId); } catch (_) {}
   startPX = e.clientX; startPY = e.clientY; startDraw = curDraw;
@@ -885,6 +893,7 @@ function resetAll(){
   gsap.set(field, { autoAlpha: 0 });
   gsap.set(arrow, { opacity: 1, scaleY: 1 });
   played = false;
+  if (arrowSound) { arrowSound.pause(); arrowSound.currentTime = 0; }
   enter();
 }
 
