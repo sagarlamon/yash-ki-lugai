@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Happy Birthday — Our Love Story" />
+  <title>Happy Birthday ❤️</title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💜</text></svg>" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- Aurora Background -->
+  <div class="aurora"></div>
+
+  <!-- Floating Particles -->
+  <div class="particles-container"></div>
+
+  <!-- Hearts Canvas -->
+  <canvas id="hearts-canvas"></canvas>
+
+  <!-- Background Music -->
+  <audio id="bg-music" loop preload="auto">
+    <source src="assets/music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- ========== START SCREEN ========== -->
+  <div class="start-screen" id="start-screen">
+    <div class="start-content">
+      <div class="start-emoji">💜</div>
+      <p class="start-text">I have something<br>for you…</p>
+      <button class="start-button" id="start-btn">
+        Click here <span class="heart-icon">❤️</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ========== LOADING SCREEN ========== -->
+  <div class="loading-screen" id="loading-screen">
+    <div class="loading-content">
+      <div class="loading-emoji">💜</div>
+      <p class="loading-text">Preparing everything for you…</p>
+      <div class="loading-bar-wrap">
+        <div class="loading-bar" id="loading-bar"></div>
+      </div>
+      <p class="loading-percent" id="loading-percent">0%</p>
+    </div>
+  </div>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <div class="main-content" id="main-content">
+
+    <!-- ═══════ HERO: Main photo ═══════ -->
+    <section class="story-section hero-section" id="section-hero">
+      <div class="hero-card">
+        <div class="hero-photo-frame">
+          <img src="assets/images/img_hero.jpg" alt="Us" class="hero-photo" loading="eager" />
+          <div class="hero-photo-border"></div>
+        </div>
+        <h1 class="hero-title">Our Story 💜</h1>
+        <p class="hero-subtitle">Every moment with you is priceless</p>
+      </div>
+    </section>
+
+    <!-- ═══════ Block 1: The Beginning ═══════ -->
+    <section class="story-section" id="section-beginning">
+      <div class="story-card">
+        <div class="section-emoji">🌸</div>
+        <h2 class="section-title">Remember how it all started…</h2>
+        <p class="section-text">
+          One glance — and everything changed. My heart beat faster,
+          and I felt that by your side is <em>exactly where I want to be</em>.
+          That very moment when the world became completely different.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════ Photo Block 1: First Moments (4 photos) ═══════ -->
+    <section class="story-section photo-grid-section" id="section-grid1">
+      <div class="photo-grid-container">
+        <h2 class="photo-grid-title">First moments together ✨</h2>
+        <div class="photo-grid grid-4">
+          <div class="photo-grid-item reveal-item" data-delay="0">
+            <img src="assets/images/img1.jpg" alt="Our moment" loading="lazy" />
+            <div class="photo-shine"></div>
+          </div>
+          <div class="photo-grid-item reveal-item" data-delay="100">
+            <img src="assets/images/img2.jpg" alt="Our moment" loading="lazy" />
+            <div class="photo-shine"></div>
+          </div>
+          <div class="photo-grid-item reveal-item" data-delay="200">
+            <img src="assets/images/img3.jpg" alt="Our moment" loading="lazy" />
+            <div class="photo-shine"></div>
+          </div>
+          <div class="photo-grid-item reveal-item" data-delay="300">
+            <img src="assets/images/img4.jpg" alt="Our moment" loading="lazy" />
+            <div class="photo-shine"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ Video Section 1: Adventures (2 videos) ═══════ -->
+    <section class="story-section video-section" id="section-video1">
+      <div class="video-card reveal-item">
+        <h2 class="video-title">Our adventures in nature 🌿</h2>
+        <div class="video-wrapper">
+          <video src="assets/video/vid1.mp4" muted loop playsinline preload="metadata" class="story-video"
+            data-autoplay></video>
+          <div class="video-play-overlay" data-target="video">
+            <span class="play-icon">▶</span>
+          </div>
+        </div>
+        <div class="video-wrapper">
+          <video src="assets/video/vid2.mp4" muted loop playsinline preload="metadata" class="story-video"
+            data-autoplay></video>
+          <div class="video-play-overlay" data-target="video">
+            <span class="play-icon">▶</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ Block 2: Changes ═══════ -->
+    <section class="story-section" id="section-changes">
+      <div class="story-card">
+        <div class="section-emoji">🦋</div>
+        <h2 class="section-title">So much has changed since then…</h2>
+        <p class="section-text">
+          We have been through so much together: laughter and tears,
+          long conversations until morning, first trips and little
+          rituals that became <em>ours alone</em>.
+          Every day next to you is a gift.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════ Photo Block 2: Moments of Happiness (4 photos) ═══════ -->
+    <section class="story-section photo-grid-section" id="section-grid2">
+      <div class="photo-grid-container">
+        <h2 class="photo-grid-title">Moments of happiness 🥰</h2>
+        <div class="photo-grid grid-4">
+          <div class="photo-grid-item reveal-item" data-delay="0">
+            <img src="assets/images/img5.jpg" alt="Our moment" loading="lazy" />
+            <div class="photo-shine"></div>
+          </div>
+          <div class="photo-grid-item reveal-item" data-delay="100">
+            <img src="assets/images/img6.jpg" alt="Our moment" loading="lazy" />
+            <div class="photo-shine"></div>
+          </div>
+          <div class="photo-grid-item reveal-item" data-delay="200">
+            <img src="assets/images/img7.jpg" alt="Our moment" loading="lazy" />
+            <div class="photo-shine"></div>
+          </div>
+          <div class="photo-grid-item reveal-item" data-delay="300">
+            <img src="assets/images/img8.jpg" alt="Our moment" loading="lazy" />
+            <div class="photo-shine"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ Video Section 2: Days Together (2 videos) ═══════ -->
+    <section class="story-section video-section" id="section-video2">
+      <div class="video-card reveal-item">
+        <h2 class="video-title">Another day together 🌸</h2>
+        <div class="video-wrapper">
+          <video src="assets/video/vid3.mp4" muted loop playsinline preload="metadata" class="story-video"
+            data-autoplay></video>
+          <div class="video-play-overlay" data-target="video">
+            <span class="play-icon">▶</span>
+          </div>
+        </div>
+        <div class="video-wrapper">
+          <video src="assets/video/vid4.mp4" muted loop playsinline preload="metadata" class="story-video"
+            data-autoplay></video>
+          <div class="video-play-overlay" data-target="video">
+            <span class="play-icon">▶</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ Block 3: Meaning ═══════ -->
+    <section class="story-section" id="section-meaning">
+      <div class="story-card">
+        <div class="section-emoji">💫</div>
+        <h2 class="section-title">You became more to me than just…</h2>
+        <p class="section-text">
+          You are my best friend, my anchor, my home.
+          With you, I learned what it means to <em>truly love</em>.
+          You taught me to be better, to dream bigger,
+          and to cherish every single moment.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════ Photo Block 3: Warm Memories (4 photos) ═══════ -->
+    <section class="story-section photo-grid-section" id="section-grid3">
+      <div class="photo-grid-container">
+        <h2 class="photo-grid-title">Warm memories 💕</h2>
+        <div class="photo-grid grid-4">
+          <div class="photo-grid-item reveal-item" data-delay="0">
+            <img src="assets/images/img9.jpg" alt="Our moment" loading="lazy" />
+            <div class="photo-shine"></div>
+          </div>
+          <div class="photo-grid-item reveal-item" data-delay="100">
+            <img src="assets/images/img10.jpg" alt="Our moment" loading="lazy" />
+            <div class="photo-shine"></div>
+          </div>
+          <div class="photo-grid-item reveal-item" data-delay="200">
+            <img src="assets/images/img11.jpg" alt="Our moment" loading="lazy" />
+            <div class="photo-shine"></div>
+          </div>
+          <div class="photo-grid-item reveal-item" data-delay="300">
+            <img src="assets/images/img12.jpg" alt="Our moment" loading="lazy" />
+            <div class="photo-shine"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ Video Section 3: Special Moments (3 videos) ═══════ -->
+    <section class="story-section video-section" id="section-video3">
+      <div class="video-card reveal-item">
+        <h2 class="video-title">Special moments 💃🕺</h2>
+        <div class="video-wrapper video-compact">
+          <video src="assets/video/vid5.mp4" muted loop playsinline preload="metadata" class="story-video"
+            data-autoplay></video>
+          <div class="video-play-overlay" data-target="video">
+            <span class="play-icon">▶</span>
+          </div>
+        </div>
+        <div class="video-wrapper video-compact">
+          <video src="assets/video/vid6.mp4" muted loop playsinline preload="metadata" class="story-video"
+            data-autoplay></video>
+          <div class="video-play-overlay" data-target="video">
+            <span class="play-icon">▶</span>
+          </div>
+        </div>
+        <div class="video-wrapper video-compact">
+          <video src="assets/video/vid7.mp4" muted loop playsinline preload="metadata" class="story-video"
+            data-autoplay></video>
+          <div class="video-play-overlay" data-target="video">
+            <span class="play-icon">▶</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ Block 4: Special Day ═══════ -->
+    <section class="story-section" id="section-special">
+      <div class="story-card">
+        <div class="section-emoji">✨</div>
+        <h2 class="section-title">And today is your special day…</h2>
+        <p class="section-text">
+          Today is your birthday! The day you came into this world
+          to make it brighter and more beautiful. And I want you to know:
+          every page of our story together is my absolute favorite.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════ Photo Block 4: Every Moment (4 photos) ═══════ -->
+    <section class="story-section photo-grid-section" id="section-grid4">
+      <div class="photo-grid-container">
+        <h2 class="photo-grid-title">Every moment is ours 🌹</h2>
+        <div class="photo-grid grid-4">
+          <div class="photo-grid-item reveal-item" data-delay="0">
+            <img src="assets/images/img13.jpg" alt="Our moment" loading="lazy" />
+            <div class="photo-shine"></div>
+          </div>
+          <div class="photo-grid-item reveal-item" data-delay="100">
+            <img src="assets/images/img14.jpg" alt="Our moment" loading="lazy" />
+            <div class="photo-shine"></div>
+          </div>
+          <div class="photo-grid-item reveal-item" data-delay="200">
+            <img src="assets/images/img15.jpg" alt="Our moment" loading="lazy" />
+            <div class="photo-shine"></div>
+          </div>
+          <div class="photo-grid-item reveal-item" data-delay="300">
+            <img src="assets/images/img16.jpg" alt="Our moment" loading="lazy" />
+            <div class="photo-shine"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ Relationship Timer ═══════ -->
+    <section class="timer-section" id="section-timer">
+      <h2 class="timer-title">We've been together for… 💜</h2>
+      <div class="timer-container">
+        <div class="timer-block">
+          <div class="timer-value" id="timer-days">0</div>
+          <div class="timer-label">days</div>
+        </div>
+        <div class="timer-block">
+          <div class="timer-value" id="timer-hours">0</div>
+          <div class="timer-label">hours</div>
+        </div>
+        <div class="timer-block">
+          <div class="timer-value" id="timer-mins">0</div>
+          <div class="timer-label">minutes</div>
+        </div>
+        <div class="timer-block">
+          <div class="timer-value" id="timer-secs">0</div>
+          <div class="timer-label">seconds</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ FINAL: Current photo + confession ═══════ -->
+    <section class="story-section final-section" id="section-final">
+      <div class="final-content">
+        <div class="final-photo-wrapper reveal-item">
+          <img src="assets/images/img_last.jpg" alt="Us now" class="final-photo" loading="eager" />
+          <div class="final-photo-glow"></div>
+        </div>
+        <div class="final-heart">💖</div>
+        <h2 class="final-title">Happy Birthday, my love ❤️</h2>
+        <p class="final-message">
+          I love you.<br>
+          Today, tomorrow, and forever.
+        </p>
+        <p class="final-signature">— forever yours 💜</p>
+      </div>
+    </section>
+
+    <!-- ═══════ FOOTER ═══════ -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <p class="footer-credit">
+          Website made with ❤️ by <strong>SAGAR</strong>
+        </p>
+        <p class="footer-insta">
+          <a href="https://instagram.com/sagarzxe" target="_blank" rel="noopener noreferrer" class="insta-link">
+            <span class="insta-icon">📸</span> Instagram Profile
+          </a>
+        </p>
+        <p class="footer-single-status">
+          (and yes… he is still single 😭💔)
+        </p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Music Toggle -->
+  <button class="music-toggle" id="music-toggle" aria-label="Toggle Music">
+    <div class="equalizer">
+      <div class="eq-bar" style="height:8px"></div>
+      <div class="eq-bar" style="height:14px"></div>
+      <div class="eq-bar" style="height:5px"></div>
+      <div class="eq-bar" style="height:11px"></div>
+    </div>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

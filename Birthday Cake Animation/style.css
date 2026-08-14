@@ -1,0 +1,517 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Lato:ital,wght@0,300;0,400;0,700;1,300&family=Poppins:wght@500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #f7a1a1 0%, #eb9494 40%, #e07b89 100%);
+  font-family: 'Lato', sans-serif;
+  overflow: hidden;
+  color: #5c2f38;
+}
+
+/* ============================================== Top Nav Header
+*/
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 22px;
+  background: rgba(255, 240, 245, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 20px rgba(120, 20, 50, 0.15);
+}
+
+.nav-btn, .cut-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.nav-btn {
+  color: #7a2e3f;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+.nav-btn:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  color: #a31241;
+  box-shadow: 0 4px 15px rgba(150, 20, 60, 0.25);
+}
+
+.cut-btn {
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff4081 0%, #c2185b 100%);
+  box-shadow: 0 4px 15px rgba(194, 24, 91, 0.4);
+  animation: pulseBtn 2s infinite;
+}
+.cut-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(194, 24, 91, 0.55);
+  background: linear-gradient(135deg, #ff5252 0%, #d81b60 100%);
+}
+
+@keyframes pulseBtn {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* ============================================== Hint Banner
+*/
+.hint-banner {
+  margin-top: 65px;
+  text-align: center;
+  padding: 8px 16px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  background: rgba(180, 40, 80, 0.28);
+  backdrop-filter: blur(4px);
+  z-index: 10;
+  position: relative;
+}
+.hint-banner.celebrate {
+  background: linear-gradient(90deg, #ff4081, #7c4dff, #00b0ff, #ff4081);
+  background-size: 200% 200%;
+  animation: rainbowGlow 3s ease infinite;
+}
+
+@keyframes rainbowGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ============================================== Stage & Cake
+*/
+.stage {
+  position: relative;
+  max-width: 500px;
+  margin: 15px auto 0 auto;
+  text-align: center;
+  z-index: 5;
+}
+
+.cake-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.cake-container:hover {
+  transform: scale(1.03);
+}
+
+#cake {
+  display: block;
+  position: relative;
+  margin: -5.5em auto 0 auto;
+  filter: drop-shadow(0 12px 25px rgba(120, 20, 50, 0.28));
+  transition: transform 0.5s ease;
+}
+
+.cake-container.is-cut #cake {
+  animation: cakeCutBounce 0.6s ease forwards;
+  filter: drop-shadow(0 16px 35px rgba(194, 24, 91, 0.45));
+}
+
+@keyframes cakeCutBounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08) rotate(-2deg); }
+  100% { transform: scale(1.03) rotate(0deg); }
+}
+
+/* Slicing Line Animation */
+.slice-line {
+  position: fixed;
+  top: 50%;
+  left: -50%;
+  width: 200%;
+  height: 5px;
+  background: linear-gradient(90deg, transparent, #ffffff, #ff4081, #ffffff, transparent);
+  box-shadow: 0 0 25px #ffffff, 0 0 45px #ff4081;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0;
+  transform: rotate(-35deg);
+}
+.slice-line.active {
+  animation: sliceCut 0.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes sliceCut {
+  0% { opacity: 1; transform: translateY(-160px) rotate(-35deg) scaleX(0.2); }
+  50% { opacity: 1; transform: translateY(0) rotate(-35deg) scaleX(1); }
+  100% { opacity: 0; transform: translateY(160px) rotate(-35deg) scaleX(1.2); }
+}
+
+/* Mouse Knife Follower */
+.knife-follower {
+  position: fixed;
+  pointer-events: none;
+  z-index: 99;
+  font-size: 32px;
+  margin-top: -16px;
+  margin-left: 12px;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35));
+}
+
+/* ============================================== Candle & Flame
+*/
+.velas {
+  background: #ffffff;
+  border-radius: 10px;
+  position: absolute;
+  top: 228px;
+  left: 50%;
+  margin-left: -2.4px;
+  margin-top: -8.33333333px;
+  width: 5px;
+  height: 35px;
+  transform: translateY(-300px);
+  backface-visibility: hidden;
+  animation: in 500ms 6s ease-out forwards;
+  z-index: 10;
+}
+.velas:after,
+.velas:before {
+  background: rgba(255, 0, 0, 0.4);
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2.22222222px;
+}
+.velas:after { top: 25%; left: 0; }
+.velas:before { top: 45%; left: 0; }
+
+.fuego {
+  border-radius: 100%;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  margin-left: -2.6px;
+  width: 6.66666667px;
+  height: 18px;
+  transition: opacity 0.4s ease;
+}
+.fuego:nth-child(1) { animation: fuego 2s 6.5s infinite; }
+.fuego:nth-child(2) { animation: fuego 1.5s 6.5s infinite; }
+.fuego:nth-child(3) { animation: fuego 1s 6.5s infinite; }
+.fuego:nth-child(4) { animation: fuego 0.5s 6.5s infinite; }
+.fuego:nth-child(5) { animation: fuego 0.2s 6.5s infinite; }
+
+.velas.extinguished .fuego {
+  opacity: 0 !important;
+  animation: none !important;
+}
+
+@keyframes fuego {
+  0%, 100% {
+    background: rgba(254, 248, 97, 0.5);
+    box-shadow: 0 0 40px 10px rgba(248, 233, 209, 0.2);
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    background: rgba(255, 50, 0, 0.1);
+    box-shadow: 0 0 40px 20px rgba(248, 233, 209, 0.2);
+    transform: translateY(-20px) scale(0);
+  }
+}
+
+@keyframes in {
+  to { transform: translateY(0); }
+}
+
+.text {
+  color: #8b6a60;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-style: italic;
+  text-align: center;
+  margin-top: 5px;
+}
+.text h1 {
+  font-size: 1.8em;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(120, 20, 50, 0.35);
+}
+.text p {
+  font-size: 1.2em;
+  color: #fff0f4;
+}
+
+/* ============================================== Confetti Canvas
+*/
+.confetti-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+}
+
+/* ============================================== Full-Screen Random Floating Cat Party Overlay
+*/
+.cat-party-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.cat-party-overlay.active {
+  opacity: 1;
+}
+
+.floating-cat-item {
+  position: absolute;
+  pointer-events: auto;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: rotate(var(--rot)) scale(var(--scale));
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 55;
+  filter: drop-shadow(0 8px 20px rgba(120, 15, 45, 0.35));
+}
+
+.floating-cat-item:hover {
+  transform: rotate(0deg) scale(1.15) translateY(-5px);
+  z-index: 70;
+}
+
+.floating-cat-item.pop-spin {
+  animation: popSpin 0.6s ease forwards !important;
+}
+
+@keyframes popSpin {
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.3) rotate(180deg); }
+  100% { transform: scale(1) rotate(360deg); }
+}
+
+/* Floating Animations for Cats */
+.anim-type-1 {
+  animation: floatDance1 3.2s ease-in-out infinite alternate;
+}
+.anim-type-2 {
+  animation: floatDance2 2.8s ease-in-out infinite alternate;
+}
+.anim-type-3 {
+  animation: floatDance3 3.6s ease-in-out infinite alternate;
+}
+
+@keyframes floatDance1 {
+  0% { transform: translateY(0) rotate(var(--rot)) scale(var(--scale)); }
+  100% { transform: translateY(-16px) rotate(calc(var(--rot) + 4deg)) scale(calc(var(--scale) + 0.05)); }
+}
+
+@keyframes floatDance2 {
+  0% { transform: translateY(0) rotate(var(--rot)) scale(var(--scale)); }
+  100% { transform: translateY(14px) rotate(calc(var(--rot) - 5deg)) scale(calc(var(--scale) - 0.03)); }
+}
+
+@keyframes floatDance3 {
+  0% { transform: scale(var(--scale)) rotate(var(--rot)); }
+  50% { transform: scale(calc(var(--scale) + 0.06)) rotate(calc(var(--rot) - 3deg)); }
+  100% { transform: scale(var(--scale)) rotate(calc(var(--rot) + 3deg)); }
+}
+
+/* Speech Bubble Above Cat */
+.cat-speech-bubble {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(11px, 2vw, 13px);
+  font-weight: 700;
+  color: #801235;
+  background: #ffffff;
+  padding: 5px 12px;
+  border-radius: 16px;
+  margin-bottom: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+  position: relative;
+  border: 1.5px solid #ff80ab;
+}
+
+.cat-speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px 6px 0;
+  border-style: solid;
+  border-color: #ffffff transparent;
+  display: block;
+  width: 0;
+}
+
+/* Cat Image Wrapper */
+.cat-img-wrapper {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.cat-img-wrapper img {
+  width: clamp(90px, 15vw, 130px);
+  height: clamp(90px, 15vw, 130px);
+  object-fit: cover;
+  display: block;
+}
+
+/* Keyword Badge */
+.cat-badge {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff4081, #d81b60);
+  padding: 2px 8px;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  letter-spacing: 0.05em;
+}
+
+/* Responsive Scaling for smaller screens */
+@media (max-width: 768px) {
+  .cat-img-wrapper img {
+    width: clamp(70px, 18vw, 95px);
+    height: clamp(70px, 18vw, 95px);
+  }
+  .cat-speech-bubble {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+  .hint-banner {
+    font-size: 12px;
+  }
+  .top-nav {
+    padding: 8px 14px;
+  }
+  .nav-btn, .cut-btn {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+}
+
+/* ============================================== Gift Redirect Banner (Post-Celebration)
+*/
+.gift-banner {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(40px) scale(0.9);
+  z-index: 250;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  width: calc(100% - 32px);
+  max-width: 440px;
+}
+
+.gift-banner.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+.gift-banner-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  background: rgba(255, 240, 245, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 2px solid rgba(255, 128, 171, 0.6);
+  border-radius: 24px;
+  box-shadow: 0 12px 40px rgba(180, 20, 70, 0.35), 0 0 25px rgba(255, 64, 129, 0.4);
+  animation: giftCardPulse 3s infinite ease-in-out;
+}
+
+@keyframes giftCardPulse {
+  0%, 100% { box-shadow: 0 12px 40px rgba(180, 20, 70, 0.35), 0 0 25px rgba(255, 64, 129, 0.3); }
+  50% { box-shadow: 0 16px 50px rgba(180, 20, 70, 0.45), 0 0 35px rgba(255, 64, 129, 0.6); }
+}
+
+.gift-cat-gif {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 2px solid #ff80ab;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.gift-banner-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.gift-banner-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #7a1534;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.gift-banner-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background: linear-gradient(135deg, #ff4081 0%, #c2185b 100%);
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(194, 24, 91, 0.4);
+  transition: all 0.3s ease;
+}
+
+.gift-banner-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(194, 24, 91, 0.6);
+  background: linear-gradient(135deg, #ff5252 0%, #d81b60 100%);
+}
